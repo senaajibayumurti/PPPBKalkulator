@@ -4,15 +4,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#191919"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/firstNum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:paddingRight="20dp"
+        android:textSize="70dp"
+        android:textAlignment="textEnd"
+        android:textColor="#00FFFF"
+        />
+    <TextView
+        android:id="@+id/secondNum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/firstNum"
+        android:paddingRight="20dp"
+        android:textSize="70dp"
+        android:textAlignment="textEnd"
+        android:textColor="#00FFFF"
+        />
+    <LinearLayout
+        android:id="@+id/layoutOperator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/secondNum"
+        android:paddingLeft="20dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_weight="20"
+            android:background="#00FFFF" />
+        <TextView
+            android:id="@+id/operator"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:textSize="40dp"
+            android:textColor="#00FFFF"
+            />
+    </LinearLayout>
     <TextView
         android:id="@+id/viewResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/fifthLayer"
-        android:textSize="100dp"
+        android:layout_below="@id/layoutOperator"
+        android:paddingRight="20dp"
+        android:textSize="70dp"
         android:textAlignment="textEnd"
+        android:textColor="#00FFFF"
         />
     <LinearLayout
         android:id="@+id/firstLayer"
@@ -20,20 +65,27 @@
         style="@style/buttonRow">
         <Button
             style="@style/button"
-            android:text=""/>
+            android:textColor="#191919"
+            android:backgroundTint="#191919"
+            android:text="."/>
         <Button
             android:id="@+id/buttonZero"
             style="@style/button"
             android:text="0"
             android:onClick="inputNilai"/>
         <Button
-            android:id="@+id/buttonComma"
+            android:id="@+id/buttonAllClear"
             style="@style/button"
-            android:text=","/>
+            android:backgroundTint="#00FFFF"
+            android:textColor="@color/black"
+            android:text="AC"
+            android:textStyle="bold"
+            android:onClick="clearInput"/>
         <Button
             android:id="@+id/buttonEquals"
             style="@style/button"
-            android:text="="/>
+            android:text="="
+            android:onClick="hasil"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/secondLayer"
@@ -58,7 +110,7 @@
             android:id="@+id/buttonAddition"
             style="@style/button"
             android:text="+"
-            android:onClick="hitungHasil"/>
+            android:onClick="inputOperator"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/thirdLayer"
@@ -68,7 +120,7 @@
             android:id="@+id/buttonFour"
             style="@style/button"
             android:text="4"
-            android:onClick="hitungHasil"/>
+            android:onClick="inputNilai"/>
         <Button
             android:id="@+id/buttonFive"
             style="@style/button"
@@ -83,7 +135,7 @@
             android:id="@+id/buttonSubtract"
             style="@style/button"
             android:text="-"
-            android:onClick="inputNilai"/>
+            android:onClick="inputOperator"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/fourthLayer"
@@ -108,7 +160,7 @@
             android:id="@+id/buttonMultiply"
             style="@style/button"
             android:text="×"
-            android:onClick="hitungHasil"/>
+            android:onClick="inputOperator"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/fifthLayer"
@@ -116,21 +168,24 @@
         style="@style/buttonRow">
         <Button
             style="@style/button"
-            android:text=""/>
+            android:textColor="#191919"
+            android:backgroundTint="#191919"
+            android:text="."/>
         <Button
-            android:id="@+id/buttonAllClear"
             style="@style/button"
-            android:text="AC"
-            android:onClick="clearInput"/>
+            android:textColor="#191919"
+            android:backgroundTint="#191919"
+            android:text="."/>
         <Button
-            android:id="@+id/buttonBackspace"
             style="@style/button"
-            android:text="⌫"
-            android:onClick="hapusInput"/>
+            android:textColor="#191919"
+            android:backgroundTint="#191919"
+            android:text="."/>
+
         <Button
             android:id="@+id/buttonDivide"
             style="@style/button"
-            android:text="÷"
-            android:onClick="hitungHasil"/>
+            android:onClick="inputOperator"
+            android:text="÷" />
     </LinearLayout>
 </RelativeLayout>

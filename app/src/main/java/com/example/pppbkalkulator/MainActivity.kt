@@ -1,18 +1,20 @@
 // MainActivity.kt
-package com.example.pppbtugaskalkulator
+package com.example.pppbkalkulator
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import com.example.pppbkalkulator.databinding.ActivityMainBinding
+import kotlin.math.roundToInt
 
 class MainActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-    private var operand1: Double = 0.0
-    private var operator: String = ""
-    private var operand2: Double = 0.0
+    private var bil1: Double = 0.0
+    private var bil2: Double = 0.0
+    private var viewOperator: String = ""
+    private var nilaiHasil: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,62 +23,115 @@ class MainActivity : AppCompatActivity() {
 
     fun inputNilai(view: View) {
         with(binding) {
-            val buttonText = (view as Button).text.toString()
-            if (operator.isEmpty()) {
-                operand1 = operand1 * 10 + buttonText.toDouble()
-                viewResult.text = operand1.toString()
-            } else {
-                operand2 = operand2 * 10 + buttonText.toDouble()
-                viewResult.text = operand2.toString()
+            when((view as Button).text.toString()){
+                "1" ->{
+                    inputAngka("1")
+                }
+                "2" ->{
+                    inputAngka("2")
+                }
+                "3" ->{
+                    inputAngka("3")
+                }
+                "4" ->{
+                    inputAngka("4")
+                }
+                "5" ->{
+                    inputAngka("5")
+                }
+                "6" ->{
+                    inputAngka("6")
+                }
+                "7" ->{
+                    inputAngka("7")
+                }
+                "8" ->{
+                    inputAngka("8")
+                }
+                "9" ->{
+                    inputAngka("9")
+                }
+                "0" ->{
+                    inputAngka("0")
+                }
+
             }
         }
     }
 
     fun clearInput(view: View) {
         with(binding) {
-            operand1 = 0.0
-            operator = ""
-            operand2 = 0.0
+            firstNum.text = ""
+            secondNum.text = ""
+            bil1 = 0.0
+            bil2 = 0.0
             viewResult.text = ""
+            operator.text= ""
+            viewOperator=""
         }
     }
 
-    fun hapusInput(view: View) {
-        with(binding) {
-            if (operator.isEmpty()) {
-                operand1 = operand1 / 10
-                viewResult.text = operand1.toString()
-            } else {
-                operand2 = operand2 / 10
-                viewResult.text = operand2.toString()
-            }
-        }
-    }
-
-    fun hitungHasil(view: View) {
-        with(binding) {
-            when (operator) {
+    //=
+    fun hasil(view: View){
+        with(binding){
+            when(viewOperator){
                 "+" -> {
-                    val hasil = operand1 + operand2
-                    viewResult.text = hasil.toString()
+                    nilaiHasil= (bil1 + bil2).roundToInt()
+                    viewResult.text= nilaiHasil.toString()
                 }
                 "-" -> {
-                    val hasil = operand1 - operand2
-                    viewResult.text = hasil.toString()
+                    nilaiHasil= (bil1 - bil2).roundToInt()
+                    viewResult.text= nilaiHasil.toString()
                 }
                 "×" -> {
-                    val hasil = operand1 * operand2
-                    viewResult.text = hasil.toString()
+                    nilaiHasil= (bil1 * bil2).roundToInt()
+                    viewResult.text= nilaiHasil.toString()
                 }
                 "÷" -> {
-                    if (operand2 != 0.0) {
-                        val hasil = operand1 / operand2
-                        viewResult.text = hasil.toString()
-                    } else {
-                        viewResult.text = "Error"
-                    }
+                    nilaiHasil= (bil1 / bil2).roundToInt()
+                    viewResult.text= nilaiHasil.toString()
                 }
             }
         }
     }
+
+    //+, -, /, *
+    fun inputOperator(view: View) {
+        with(binding) {
+            when((view as Button).text.toString()){
+                "+" ->{
+                    operator.text="+"
+                    viewOperator="+"
+                }
+                "-" ->{
+                    operator.text="-"
+                    viewOperator="-"
+                }
+                "×" ->{
+                    operator.text="×"
+                    viewOperator="×"
+                }
+                "÷" ->{
+                    operator.text="÷"
+                    viewOperator="÷"
+                }
+
+            }
+        }
+    }
+
+    fun inputAngka(x: String){
+        with(binding){
+            if (viewOperator.isEmpty()){
+                firstNum.text = firstNum.text.toString() + x
+                bil1 = firstNum.text.toString().toInt().toDouble()
+            }
+            else{
+                secondNum.text = secondNum.text.toString() + x
+                bil2 = secondNum.text.toString().toInt().toDouble()
+            }
+        }
+    }
+
+
 }
